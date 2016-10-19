@@ -1,0 +1,122 @@
+unit Unit1;
+
+interface
+type TCar = class
+  Protected
+   reserve: real;
+   consuption: real;
+   tank: real;
+   model: string[11];
+   km: real;
+   empty: boolean;
+  public
+  constructor init(m: string; r, c, t, k: real);
+  Function refuel(l: real): real;
+  Function get_model():string;
+  Function get_tank():real;
+  Function get_consuption():real;
+  Function get_reserve():real;
+  Function get_km():real;
+  Function drive(k: real): real; overload;
+  Function drive(h, s: real): real; overload;
+end;
+
+implementation
+
+constructor TCar.init(m: string; r, c, t, k: real);
+begin
+reserve  :=  r;
+consuption := c;
+tank := t;
+model := m;
+km := k;
+end;
+
+Function TCar.refuel(l: real): real;
+var
+d: real;
+begin
+if l > tank then
+              begin
+              result := -1;
+              end
+             else
+              begin
+              reserve := reserve + l;
+              result := l - tank;
+              end;
+if reserve > tank then
+                   begin
+                   d:= reserve - tank;
+                   result := reserve - tank;
+                   reserve := reserve - d;
+                   end;
+end;
+
+Function TCar.drive(k: real): real;
+begin
+if reserve < 0  then reserve := 0;
+if k <= (reserve / consuption)
+ then
+  begin
+  result := -1;
+  km := km + k;
+  reserve := reserve - (k / consuption);
+  end
+
+ else
+  begin
+  result := k - (reserve / consuption);
+  km := km + result;
+  reserve := reserve - (result / consuption);
+  end;
+end;
+
+Function TCar.drive(h, s: real): real;
+var
+k:real;
+begin
+k := h * s;
+if reserve < 0  then reserve := 0;
+if k <= (reserve / consuption)
+ then
+  begin
+  result := -1;
+  km := km + k;
+  reserve := reserve - (k / consuption);
+  end
+
+ else
+  begin
+  result := k - (reserve / consuption);
+  km := km + result;
+  reserve := reserve - (result / consuption);
+  end;
+end;
+
+Function TCar.get_reserve():real;
+begin
+result:=reserve;
+end;
+
+Function TCar.get_km():real;
+begin
+result:=km;
+end;
+
+Function TCar.get_tank():real;
+begin
+result:=tank;
+end;
+
+Function TCar.get_consuption():real;
+begin
+result:=consuption;
+end;
+
+Function TCar.get_model():string;
+begin
+result:=model;
+end;
+
+end.

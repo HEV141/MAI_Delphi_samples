@@ -1,0 +1,50 @@
+unit Actinide;
+
+interface
+
+  uses Basic, StdCtrls, SysUtils;
+
+  type
+    TActinoids=class(TChemicalElements)      //Радиоактивные элементы
+
+  private
+    typeDecay:string;  //Основной тип распада
+    halfLife:real;    //Период полураспада
+
+  public
+    constructor Init(aName: string; aNumber: integer; aMass: real; atypeDecay:string; ahalfLife:real);
+    function get_typeDecay():string;
+    function get_halfLife():real;
+    procedure print(memo:TMemo); override;
+  end;
+
+implementation
+
+  constructor TActinoids.Init(aName: string; aNumber: integer; aMass: real; atypeDecay:string; ahalfLife:real);
+    begin
+      inherited Init(aName,aNumber,aMass);
+      typeDecay:=aTypeDecay;
+      halfLife:=aHalfLife;
+    end;
+
+  function TActinoids.get_typeDecay():string;
+    begin
+      result:=typeDecay;
+    end;
+
+  function TActinoids.get_halfLife():real;
+    begin
+      result:=halfLife;
+    end;
+
+
+  procedure TActinoids.print(memo:TMemo);
+    begin
+      inherited print(memo);
+      memo.lines.add('Type of Decay: ' + TypeDecay );
+      memo.lines.add('HalfLife: ' + floattostr(HalfLife));
+    end;
+
+
+end.
+ 

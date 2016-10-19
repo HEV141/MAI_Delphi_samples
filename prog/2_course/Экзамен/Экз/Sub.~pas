@@ -1,0 +1,40 @@
+unit Sub;
+
+interface
+  uses
+  Basic, StdCtrls, SysUtils;
+
+  type
+    TBuckShot = class(TCartrige)
+
+  private
+    AmmoType: string;
+
+  public
+    constructor Init(acal: real; acharge: integer; ashell: string; AmmoType: string);
+    function get_AmmoType():string;
+    procedure print(memo:TMemo); override;
+  end;
+
+implementation
+
+  constructor TBuckShot.Init(acal: real; acharge: integer; ashell: string; aAmmoType: string);
+    begin
+      inherited Init(acal, acharge, ashell);
+      AmmoType := aAmmoType;
+    end;
+
+  function TBuckShot.get_AmmoType():string;
+    begin
+      result := AmmoType;
+    end;
+
+
+  procedure TBuckShot.print(memo:TMemo);
+    begin
+      inherited print(memo);
+      memo.lines.add('Type of ammo: ' + AmmoType);
+    end;
+
+
+end.

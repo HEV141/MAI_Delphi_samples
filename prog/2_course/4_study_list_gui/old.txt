@@ -1,0 +1,21 @@
+{TestVar4.print(TestVar1);
+TestVar4.print(TestVar2);
+TestVar4.print(TestVar3);}
+
+{
+writeln('=================');
+writeln('Name: ', TestVar1.get_name);
+writeln('Age: ', TestVar1.get_age);
+
+writeln;
+writeln('Name: ', TestVar2.get_name);
+writeln('Age: ', TestVar2.get_age);
+writeln('Group: ', TestVar2.get_group);
+writeln('Mark: ', TestVar2.get_mark:2:2);
+
+writeln;
+writeln('Name: ', TestVar3.get_name);
+writeln('Age: ', TestVar3.get_age);
+writeln('Subject: ', TestVar3.get_subj);
+writeln('Hours: ', TestVar3.get_hour);
+}

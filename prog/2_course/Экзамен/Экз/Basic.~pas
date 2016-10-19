@@ -1,0 +1,56 @@
+unit Basic;
+
+interface
+  uses
+  StdCtrls, SysUtils;
+
+  type
+    TCartrige = class
+
+  private
+    cal: real;
+    charge: integer;
+    shell: string;
+    memo:TMemo;
+
+  public
+    Constructor Init(acal: real; acharge: integer; ashell: string);
+    Function get_cal(): real;
+    Function get_charge(): integer;
+    Function get_shell(): string;
+    procedure print(memo:TMemo); virtual;
+  end;
+
+implementation
+
+  Constructor TCartrige.Init(acal: real; acharge: integer; ashell: string);
+    begin
+      cal := acal;
+      charge := acharge;
+      shell := ashell;
+    end;
+
+  Function TCartrige.get_cal(): real;
+    begin
+      result := cal;
+    end;
+
+  Function TCartrige.get_charge(): integer;
+    begin
+      result := charge;
+    end;
+
+  Function TCartrige.get_shell(): string;
+    begin
+      result := shell;
+    end;
+
+  procedure TCartrige.print(memo:TMemo);
+    begin
+      memo.lines.add('===============');
+      memo.lines.add('cal: ' + floattostr(cal));
+      memo.lines.add('charge: ' + inttostr(charge));
+      memo.lines.add('shell: ' + shell);
+    end;
+
+end.
